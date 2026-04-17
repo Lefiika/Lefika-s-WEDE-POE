@@ -62,7 +62,8 @@ I will spend the following weeks using JavaScript and CSS to finalise the websit
 
 ## Sitemap
 
-![Website Sitemap](img/mysitemap.png) <br> (The one here is only an example, include your own site map)
+<img width="3164" height="1844" alt="image" src="https://github.com/user-attachments/assets/b853a5ca-86a9-4c4c-97a7-3bf9b49f036a" />
+ (The one here is only an example, include your own site map)
 
 ## References
 
