@@ -67,11 +67,16 @@ I will spend the following weeks using JavaScript and CSS to finalise the websit
 ## References
 
 HubSpot, 2026. Essential Website KPIs to Track. [online] Available at: https://www.hubspot.com [Accessed 11 April 2026].
+
 Sitebuilderreport, 2026. Retail Website Design Inspiration. [online] Available at: https://www.sitebuilderreport.com [Accessed 11 April 2026].
+
 Wootware, 2026. Custom PC Component Selection and Layout. [online] Available at: https://www.wootware.co.za [Accessed 12 April 2026].
 
 Google Gemini, 2026. AI assistant consultation for code debugging and logic resolution. [Software] Available at: https://gemini.google.com (Accessed: 20 April 2026).
+
 Kevin Powell, 2024. HTML & CSS Crash Course: Build a website from scratch. [YouTube] Available at: https://www.youtube.com/@KevinPowell (Accessed: 20 April 2026).
+
 Traversy Media, 2024. HTML5 and CSS3 fundamentals for responsive design. [YouTube] Available at: https://www.youtube.com/@TraversyMedia (Accessed: 20 April 2026).
+.
 W3Schools, 2026. HTML(5) Tutorial: The language for building web pages. [online] Available at: https://www.w3schools.com/html/ (Accessed: 20 April 2026).
 
