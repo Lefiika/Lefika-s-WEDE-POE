@@ -7,61 +7,113 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                <h1>Tech Lover’s</h1>
-               <a href="index.html">
-                <img src="https://tse3.mm.bing.net/th/id/OIP.z9FZgQN2LalIPuGhvksKIAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Tech Lover’s Logo">
-                </a>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href ="shop.html">Shop</a></li>
-                <li><a href="build.html">Custom Build</a></li>
-                <li><a href="repair.html">Repair Booking</a></li>
-                <li><a href="About.html">About Us</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+                    <div class="logo">
+                     <h1>Tech Lover’s</h1>
+                      <a href="index.html">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.z9FZgQN2LalIPuGhvksKIAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Tech Lover’s Logo">
+                        </a>
+                    </div>     
+               <nav>      
+                <a href="index.html">Home</a>
+                <a href ="shop.html">Shop</a>
+                <a href="custom.html">Custom Build</a>
+                <a href="repair.html">Repair Booking</a>
+                <a href="about.html">About Us</a>
+                <a href="Contact.html">Contact Us</a>
+                <a href="checkout.html">Finalise Order</a>
+              </nav>
     </header>
-<main class="page-content">
-    <section class="shop-section">
-        <h2 class="section-label">high-performance components</h2>
-        <div class="wireframe-grid">
-            <div class="product-card">
-                <div class="image-placeholder">
-                    </div>
-                <div class="card-info">
-                    <h4>NVIDIA RTX 4080</h4>
-                    <p class="price">R22,500</p>
-                    <p class="body-text">Elite 4K gaming performance with ray tracing for the modern enthusiast.</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-placeholder"></div>
-                <div class="card-info">
-                    <h4>Intel Core i9-14900K</h4>
-                    <p class="price">R11,200</p>
-                    <p class="body-text">Unmatched processing power for heavy workloads and high-end gaming rigs.</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="image-placeholder"></div>
-                <div class="card-info">
-                    <h4>G.Skill Trident 32GB</h4>
-                    <p class="price">R3,100</p>
-                    <p class="body-text">High-speed DDR5 memory designed for stability and premium aesthetics.</p>
-                </div>
-            </div>
-        </div>
+<main>
+    <section >
+        <form>
+            <input type="text" placeholder="Search for CPU's,Keyboards,etc..." size="50">
+            <input type="submit" value="Search">
+        </form>
+        <p>
+            <strong>Quick Filters:</strong> 
+            <button type="button">All Items</button>
+            <button type="button">Keyboards</button>
+            <button type="button">CPUs</button>
+            <button type="button">GPUs</button>
+            <button type="button">Pre-built PCs</button>
+            <button type="button">Accessories</button>
+        </p>
     </section>
+
 </main>
-        </div>
+    <aside>
+        <h3>Filter Inventrory</h3>
+        <p><strong>Release Date:</strong></p>
+        <input type="date">
+        <p><strong>Condition</strong></p>
+
+        <p><strong>Availability:</strong></p>
+        <select>
+            <option>In Stock</option>
+            <option>Regiional Delivery Only</option>
+            <option>Out of Stock</option>
+        </select>
+        <p><strong>Condition:</strong></p>
+        <input type="checkbox"><label>New Parts</label><br>
+        <input type="checkbox"><label>Refurbished</label>
+
+        <p><strong>Price Range:</strong></p>
+        <input type="range" min="0" max="100">
+        <p>R0 - R100,000</p>
+
+        <p><strong>Warranty Options:</strong></p>
+        <input type="radio" name="warranty"> <label>1 Year Standard</label><br>
+        <input type="radio" name="warranty"> <label>3 Year Extended</label>
+    </aside>
+
+<section>
+            <h2>Available Tech & Components</h2>
+            <p>Explore our curated selection of high-quality components and fully tested pre-built systems. Each item is selected to ensure it meets our standards for being built to last and easily repairable.</p>
+
+            <div>
+                <img src="https://th.bing.com/th/id/R.4fd62bd96e4d06521dc15ff3d8d91cd9?rik=vXZGvn38T3ZBUw&pid=ImgRaw&r=0" alt="Razer Pro Type Ultra">
+                <h3>Razer Pro Type Ultra</h3>
+                <p>Designed for both students and gamers, these keyboards offer the durability required for long study sessions or intense gaming rigs.</p>
+                <p><strong>Price: R1,200</strong></p>
+                <button>Add to Cart</button>
+            </div>
+
+            <br>
+
+            <div>
+                <img src="https://tse3.mm.bing.net/th/id/OIP.1Fg5aUFiuVs0Iim4EPKqOQHaE6?rs=1&pid=ImgDetMain&o=7&rm=3" alt="AMD ryzen 5">
+                <h3>AMD ryzen 5</h3>
+                <p>The heart of any custom build. We stock powerful multi-core processors that enable small businesses to run office networks smoothly or enthusiasts to build high-end gaming machines.</p>
+                <p><strong>Price: R6,500</strong></p>
+                <button>Add to Cart</button>
+            </div>
+
+            <br>
+
+            <div>
+                <img src="https://tse4.mm.bing.net/th/id/OIP.gMzpJ2bB-SyJ_MX3yQCU1AHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="GeForce RTX 4070 Ti">
+                <h3>GeForce RTX 4070 Ti</h3>
+                <p>Essential for high-end users seeking bespoke gaming rigs. Our GPUs are sourced to provide the best performance-to-price ratio in the current market.</p>
+                <p><strong>Price: R14,000</strong></p>
+                <button>Add to Cart</button>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>Our Commitment to Quality Hardware</h3>
+            <p>
+                At Tech Lover’s, we understand that buying computer parts can be overwhelming. Since our start in a small garage in 2018, we have prioritized honest advice over quick sales. Whether you are looking for affordable laptops or powerful GPUs, our retail list is curated by our founders, Lefika and John, who have years of hands-on repair experience.
+            </p>
+            <p>
+                We believe in sustainable technology.This means we don't just sell you a part; we sell you a component that is built to last. If you are unsure which part is right for your specific office network or gaming setup, you can always visit our <strong>Contact Page</strong> to message us on WhatsApp for a direct consultation. [cite: 168, 190] Our goal is to ensure every student, gamer, and business owner across the country has access to professional-grade IT support and high-quality hardware.
+            </p>
+        </section>
+    </main>     
        
-       <footer>
+    <footer>
         <p>&copy;2026 Tech Lover's | Pretoria , South Africa</p>
-        </footer>
+    </footer>
 </body>
 </html>
