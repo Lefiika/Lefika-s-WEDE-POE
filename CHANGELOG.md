@@ -88,3 +88,10 @@ Fixed link issue on the headers
 2.6.3
 https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/2c25732b6cbeb3fa426dec84a0e65e46d49c09d1
 Final work on code cleaning and optimizing it while fixing errors when found
+
+2.6.4
+Reworked the header to fix logical errors such as having the checkout page assesable throught the navigation bar 
+
+fixed the issue of the header not being consistent on different pages 
+
+also finished listing the references used during coding
