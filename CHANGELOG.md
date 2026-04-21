@@ -90,6 +90,7 @@ https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/2c25732b6cbeb3fa426dec84a0e6
 Final work on code cleaning and optimizing it while fixing errors when found
 
 2.6.4
+https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/95e577dfe02cb2e3b49f0fb65bf4d7eb288809ee
 Reworked the header to fix logical errors such as having the checkout page assesable throught the navigation bar 
 
 fixed the issue of the header not being consistent on different pages 
