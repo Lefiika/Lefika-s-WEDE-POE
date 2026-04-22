@@ -103,3 +103,7 @@ also finished listing the references used during coding
 2.6.5
 https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/594087e17e28da9758c1f0d631aae8410209eda4
 Further fixing of header navigation
+
+2.7.1
+https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/a6611b4b37d5a982c5b213bb651d6ddd16167e42
+Patched issue of services being blank
