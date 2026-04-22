@@ -64,9 +64,12 @@ Created and finsihed  the checkout page
 
 2.6.0
 https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/4c489c4f8ee77abefc69b5104216d2c17c07e97b
-
 Created and finshed the repair page 
 
+2.7.0
+https://github.com/Lefiika/Lefika-s-WEDE-POE/commit/abe3c7f81747db1ddf71dd6c071d27db000e3d43
+Changed the design for repair services to make it make better sense by replacing the article with a list in the form of radio groups 
+also added more choices to the list
 
 - PATCH → Bug fixes / small improvements (1.0.0 → 1.0.1)
 2.5.1
