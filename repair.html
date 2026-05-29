@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Repair|Tech Lover's</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
                     <div class="logo">
-                     <h1>Tech Lover’s</h1>
+                     <h1>Tech Lover's</h1>
                       <a href="index.html">
-                        <img src="https://tse3.mm.bing.net/th/id/OIP.z9FZgQN2LalIPuGhvksKIAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Tech Lover’s Logo">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.z9FZgQN2LalIPuGhvksKIAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"  alt="Tech Lover's Logo">
                         </a>
                     </div>     
                <nav>      
@@ -19,75 +20,78 @@
                 <a href="custom.html">Custom Build</a> |
                 <strong>Repair Booking</strong> |
                 <a href="about.html">About Us</a> |
-                <a href="Contact.html">Contact Us</a> 
+                <a href="contact.html">Contact Us</a> 
               </nav>
     </header>
- <main>
+    <main>
         <section>
             <h2>Book a Professional Repair</h2>
-            <p>Reliable tech solutions to keep your world </p>
+            <p>Reliable tech solutions to keep your world connected.</p>
             <p>Provide details about your device and choose a preferred completion date.</p>
         </section>
 
-            <div >
+            <div>
                 
-                <section >
-                    <h3>Select a Repair Service:</h3>        <!-- 'small gallery showing services available'-->
-                    <div>
-                          <ul>
-                               <li>
-                                   <input type="radio" id="screen" name="repair_service" value="screen_repair">
-                                   <label for="screen">Screen Repair</label>
-                              </li>
-                              <li>
-                                   <input type="radio" id="battery" name="repair_service" value="battery_replacement">
-                                   <label for="battery">Battery Replacement</label>
-                             </li>
-                             <li>
-                                   <input type="radio" id="software" name="repair_service" value="software_update">
-                                   <label for="software">Software Update</label>
-                             </li>
-                             <li>
-                                   <input type="radio" id="hardware" name="repair_service" value="hardware_upgrade">
-                                   <label for="hardware">Hardware Upgrade (RAM/SSD)</label>
-                            </li>
-                            </ul>
-                    </div>
+                <section>
+                    <fieldset>
+                        <legend><strong>Select a Repair Service</strong></legend>   <!-- small gallery showing services available -->
+                        <div>
+                              <ul>
+                                   <li>
+                                       <input type="radio" id="screen" name="repair_service" value="screen_repair">
+                                       <label for="screen">Screen Repair</label>
+                                  </li>
+                                  <li>
+                                       <input type="radio" id="battery" name="repair_service" value="battery_replacement">
+                                       <label for="battery">Battery Replacement</label>
+                                 </li>
+                                 <li>
+                                       <input type="radio" id="software" name="repair_service" value="software_update">
+                                       <label for="software">Software Update</label>
+                                 </li>
+                                 <li>
+                                       <input type="radio" id="hardware" name="repair_service" value="hardware_upgrade">
+                                       <label for="hardware">Hardware Upgrade (<abbr title="Random Access Memory">RAM</abbr>/<abbr title="Solid State Drive">SSD</abbr>)</label>
+                                </li>
+                                </ul>
+                        </div>
+                    </fieldset>
                 </section>
 
-                <section >
-                    <h3>Device & Problem Details</h3>          <!-- 'where customer explains thier problem '-->
-                    <p>Tell us the make of your device and exactly what is wrong.</p>
-                    <div>
-                        <textarea name="Problem" rows="8" placeholder="e.g. Dell Latitude 5400 Screen flickering when moved..."></textarea>
-                    </div>
+                <section>
+                    <fieldset>
+                        <legend><strong>Device &amp; Problem Details</strong></legend>   <!-- where customer explains their problem -->
+                        <p>Tell us the make of your device and exactly what is wrong.</p>
+                        <div>
+                            <textarea name="Problem" rows="8" placeholder="e.g. Dell Latitude 5400 Screen flickering when moved..."></textarea>
+                        </div>
+                    </fieldset>
                 </section>
 
-                <section >
-                    <h3>Completion Date</h3>            <!-- where customer picks the date they want the repair done by'-->
-                     <!-- Masterminds Tutorials ,2021.Watched the video to learn how do add a date time picker. https://www.youtube.com/watch?v=3vD1kTzQsNE&t=70s-->
-                    <p>Pick the date you want your order to be done by.</p>
-                    <div>
-                        <label for="repair-date">Select Date:</label>
-                        <input type="date" id="repair-date" name="repair-date">
-                        <br><br>
-                        <label for="repair-time">Select Preferred Time:</label>
-                        <input type="time" id="repair-time" name="repair-time">
-                    </div>
+                <section>
+                    <fieldset>
+                        <legend><strong>Preferred Completion Date</strong></legend>   <!-- where customer picks the date they want the repair done by -->
+                        <!-- Masterminds Tutorials, 2021. Watched the video to learn how to add a date time picker. https://www.youtube.com/watch?v=3vD1kTzQsNE&t=70s -->
+                        <p>Pick the date you want your order to be done by.</p>
+                        <div>
+                            <label for="repair-date">Select Date:</label>
+                            <input type="date" id="repair-date" name="repair-date">
+                            <br><br>
+                            <label for="repair-time">Select Preferred Time:</label>
+                            <input type="time" id="repair-time" name="repair-time">
+                        </div>
+                    </fieldset>
                 </section>
             </div>
 
             <div>
-          <a href="checkout.html">
-             <button type="button">Checkout</button>
-             </a>
+                <a href="checkout.html">
+                    <button type="button">Checkout</button>
+                </a>
             </div>
-        </form>
-    </main>
     </main>
     <footer>
-        <p>&copy;2026 Tech Lover's | Pretoria , South Africa</p>
+        <p>&copy;<time datetime="2026">2026</time> Tech Lover's | Pretoria , South Africa</p>
     </footer>
 </body>
-</html>    
-
+</html>
