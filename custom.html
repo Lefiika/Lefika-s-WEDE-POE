@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Custom Build | Tech Lover's</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom PC Build Configurator | Tech Lover's</title>
+    <meta name="description" content="Build your own custom PC with Tech Lover's. Choose your motherboard, CPU, RAM and GPU, and we'll hand-assemble and stress-test your dream machine.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +18,8 @@
                 <strong>Custom Build</strong> | 
                 <a href="repair.html">Repair Booking</a> | 
                 <a href="about.html">About Us</a> | 
-                <a href="contact.html">Contact Us</a> 
+                <a href="contact.html">Contact Us</a> |
+                <a href="checkout.html">🛒 Cart</a>
             </p>
         </nav>
     </header>
@@ -36,48 +39,52 @@
             <div>
                 <details>
                     <summary><strong>Select Motherboard</strong></summary>      <!-- Customer picks the part they want in each category -->
-                    <input type="text" placeholder="Search Motherboards...">
-                    <ul>
-                        <li><input type="radio" name="mobo"> Pro-X Gaming Board – R4,500</li>
-                        <li><input type="radio" name="mobo"> Office-Standard B550 – R2,200</li>
-                        <li><input type="radio" name="mobo"> Mini-<abbr title="Information Technology Extended Form Factor">ITX</abbr> Compact Board – R3,100</li>
+                    <input type="text" id="search-mobo" data-list="list-mobo" placeholder="Search Motherboards...">
+                    <ul id="list-mobo">
+                        <li><input type="radio" name="mobo" class="build-part" data-price="4500" data-name="Pro-X Gaming Board"> Pro-X Gaming Board – R4,500</li>
+                        <li><input type="radio" name="mobo" class="build-part" data-price="2200" data-name="Office-Standard B550"> Office-Standard B550 – R2,200</li>
+                        <li><input type="radio" name="mobo" class="build-part" data-price="3100" data-name="Mini-ITX Compact Board"> Mini-<abbr title="Information Technology Extended Form Factor">ITX</abbr> Compact Board – R3,100</li>
                     </ul>
+                    <p class="unavailable-msg" hidden>This component is unavailable.</p>
                 </details>
 
                 <br>
 
                 <details>
                     <summary><strong>Select Processor (<abbr title="Central Processing Unit">CPU</abbr>)</strong></summary>
-                    <input type="text" placeholder="Search CPUs...">
-                    <ul>
-                        <li><input type="radio" name="cpu"> AMD Ryzen 5 – R8,200</li>
-                        <li><input type="radio" name="cpu"> Apple M3 – R3,500</li>
-                        <li><input type="radio" name="cpu"> Intel Core i9 – R12,000</li>
+                    <input type="text" id="search-cpu" data-list="list-cpu" placeholder="Search CPUs...">
+                    <ul id="list-cpu">
+                        <li><input type="radio" name="cpu" class="build-part" data-price="8200" data-name="AMD Ryzen 5"> AMD Ryzen 5 – R8,200</li>
+                        <li><input type="radio" name="cpu" class="build-part" data-price="3500" data-name="Apple M3"> Apple M3 – R3,500</li>
+                        <li><input type="radio" name="cpu" class="build-part" data-price="12000" data-name="Intel Core i9"> Intel Core i9 – R12,000</li>
                     </ul>
+                    <p class="unavailable-msg" hidden>This component is unavailable.</p>
                 </details>
 
                 <br>
 
                 <details>
                     <summary><strong>Select Memory (<abbr title="Random Access Memory">RAM</abbr>)</strong></summary>
-                    <input type="text" placeholder="Search RAM...">
-                    <ul>
-                        <li><input type="radio" name="ram"> Corsair Vengeance LPX – R1,800</li>
-                        <li><input type="radio" name="ram"> G.Skill Trident 5 – R3,200</li>
-                        <li><input type="radio" name="ram"> Kingston FURY – R6,000</li>
+                    <input type="text" id="search-ram" data-list="list-ram" placeholder="Search RAM...">
+                    <ul id="list-ram">
+                        <li><input type="radio" name="ram" class="build-part" data-price="1800" data-name="Corsair Vengeance LPX"> Corsair Vengeance LPX – R1,800</li>
+                        <li><input type="radio" name="ram" class="build-part" data-price="3200" data-name="G.Skill Trident 5"> G.Skill Trident 5 – R3,200</li>
+                        <li><input type="radio" name="ram" class="build-part" data-price="6000" data-name="Kingston FURY"> Kingston FURY – R6,000</li>
                     </ul>
+                    <p class="unavailable-msg" hidden>This component is unavailable.</p>
                 </details>
 
                 <br>
 
                 <details>
                     <summary><strong>Select Graphics Card (<abbr title="Graphics Processing Unit">GPU</abbr>)</strong></summary>
-                    <input type="text" placeholder="Search GPUs...">
-                    <ul>
-                        <li><input type="radio" name="gpu"> NVIDIA GeForce RTX40 – R5,000</li>
-                        <li><input type="radio" name="gpu"> AMD Radeon RX 7900 – R6,000</li>
-                        <li><input type="radio" name="gpu"> Intel Arc A770 – R22,000</li>
+                    <input type="text" id="search-gpu" data-list="list-gpu" placeholder="Search GPUs...">
+                    <ul id="list-gpu">
+                        <li><input type="radio" name="gpu" class="build-part" data-price="5000" data-name="NVIDIA GeForce RTX40"> NVIDIA GeForce RTX40 – R5,000</li>
+                        <li><input type="radio" name="gpu" class="build-part" data-price="6000" data-name="AMD Radeon RX 7900"> AMD Radeon RX 7900 – R6,000</li>
+                        <li><input type="radio" name="gpu" class="build-part" data-price="22000" data-name="Intel Arc A770"> Intel Arc A770 – R22,000</li>
                     </ul>
+                    <p class="unavailable-msg" hidden>This component is unavailable.</p>
                 </details>
             </div>
 
@@ -92,9 +99,10 @@
                            alt="Selected Component Preview">
                   <figcaption>Component preview – select a part above to see details</figcaption>
                 </figure>
-                <p><strong>Item Name:</strong> ......</p>
+                <p><strong>Item Name:</strong> <span id="preview-name">......</span></p>
                 <p><strong>Estimated Build Total:</strong></p>
-                <h2>R85,977</h2> <button type="button">Add Build to Cart</button>
+                <h2 id="build-total">R0</h2> <button type="button" id="add-build-btn">Add Build to Cart</button>
+                <p id="build-status" role="alert"></p>
             </div>
         </section>
 
@@ -115,5 +123,6 @@
     <footer>
         <p>&copy;<time datetime="2026">2026</time> Tech Lover's | Pretoria , South Africa</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

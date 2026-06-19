@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repair|Tech Lover's</title>
+    <title>Book a PC or Laptop Repair | Tech Lover's</title>
+    <meta name="description" content="Book a professional laptop or PC repair with Tech Lover's. Screen repairs, battery replacements, software fixes and hardware upgrades in Pretoria.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +21,8 @@
                 <a href="custom.html">Custom Build</a> |
                 <strong>Repair Booking</strong> |
                 <a href="about.html">About Us</a> |
-                <a href="contact.html">Contact Us</a> 
+                <a href="contact.html">Contact Us</a> |
+                <a href="checkout.html">🛒 Cart</a>
               </nav>
     </header>
     <main>
@@ -30,15 +32,14 @@
             <p>Provide details about your device and choose a preferred completion date.</p>
         </section>
 
-            <div>
-                
+            <form id="repair-form" action="checkout.html" method="get" novalidate>
                 <section>
                     <fieldset>
                         <legend><strong>Select a Repair Service</strong></legend>   <!-- small gallery showing services available -->
                         <div>
                               <ul>
                                    <li>
-                                       <input type="radio" id="screen" name="repair_service" value="screen_repair">
+                                       <input type="radio" id="screen" name="repair_service" value="screen_repair" required>
                                        <label for="screen">Screen Repair</label>
                                   </li>
                                   <li>
@@ -63,7 +64,8 @@
                         <legend><strong>Device &amp; Problem Details</strong></legend>   <!-- where customer explains their problem -->
                         <p>Tell us the make of your device and exactly what is wrong.</p>
                         <div>
-                            <textarea name="Problem" rows="8" placeholder="e.g. Dell Latitude 5400 Screen flickering when moved..."></textarea>
+                            <label for="problem-details">Problem Description:</label>
+                            <textarea id="problem-details" name="Problem" rows="8" placeholder="e.g. Dell Latitude 5400 Screen flickering when moved..." minlength="10" required></textarea>
                         </div>
                     </fieldset>
                 </section>
@@ -75,23 +77,24 @@
                         <p>Pick the date you want your order to be done by.</p>
                         <div>
                             <label for="repair-date">Select Date:</label>
-                            <input type="date" id="repair-date" name="repair-date">
+                            <input type="date" id="repair-date" name="repair-date" required>
                             <br><br>
                             <label for="repair-time">Select Preferred Time:</label>
-                            <input type="time" id="repair-time" name="repair-time">
+                            <input type="time" id="repair-time" name="repair-time" required>
                         </div>
                     </fieldset>
                 </section>
-            </div>
 
-            <div>
-                <a href="checkout.html">
-                    <button type="button">Checkout</button>
-                </a>
-            </div>
+                <p id="repair-form-status" role="alert"></p>
+
+                <div>
+                    <button type="submit">Checkout</button>
+                </div>
+            </form>
     </main>
     <footer>
         <p>&copy;<time datetime="2026">2026</time> Tech Lover's | Pretoria , South Africa</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

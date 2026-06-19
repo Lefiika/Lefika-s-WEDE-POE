@@ -60,6 +60,16 @@ I will Spend 5 Days on completing the HTML side of the code from 2026/04/13 to 2
 I will spend 2 days from 2026/04/17  to 2026/04/19 fault checking the code to prevent errors or bugs 
 I will spend the following weeks using JavaScript and CSS to finalise the website.
 
+## Part 3: JavaScript, Forms and SEO
+
+For Part 3 I added a single script.js file that is linked on the contact, repair, shop, custom build, and checkout pages. It handles:
+- Validating the contact form and the repair booking form on submit, with error messages shown to the user if something is missing or too short.
+- Filtering the shop page's product list when a Quick Filter button is clicked (Keyboards, CPUs, GPUs, RAM, Motherboards, Cases, Pre-built PCs, Accessories), hiding items that do not match the selected category.
+- Updating the custom build page's preview name and running total live as the customer selects parts.
+- A cart system: Add to Cart buttons on the shop page push items into a shared window.cart array. The checkout page reads this cart, renders the items with Remove buttons, and updates the order summary table and grand total live. When all items are removed an empty-cart state is shown with buttons linking back to the Shop, Repair Booking, and Custom Build pages.
+
+I also added a Cart link to the navigation bar on every page so the checkout is always one click away. A robots.txt and sitemap.xml were added to the project root, and meta description tags plus clearer title tags were added to every page for basic on-page SEO.
+
 ## Sitemap
 
 <img width="3164" height="1844" alt="image" src="https://github.com/user-attachments/assets/b853a5ca-86a9-4c4c-97a7-3bf9b49f036a" />
@@ -81,4 +91,10 @@ Traversy Media, 2024. HTML5 and CSS3 fundamentals for responsive design. [YouTub
 W3Schools, 2026. HTML(5) Tutorial: The language for building web pages. [online] Available at: https://www.w3schools.com/html/ (Accessed: 20 April 2026).
 
 Masterminds Tutorials ,2021.Watched the video to learn how do add a date time picker. Available at: https://www.youtube.com/watch?v=3vD1kTzQsNE&t=70s (Accessed: 20 April 2026).
+
+MDN Web Docs, 2026. Client-side form validation. [online] Available at: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation (Accessed: 16 June 2026).
+
+W3Schools, 2026. JavaScript HTML DOM. [online] Available at: https://www.w3schools.com/js/js_htmldom.asp (Accessed: 16 June 2026).
+
+Google Search Central, 2026. Introduction to robots.txt. [online] Available at: https://developers.google.com/search/docs/crawling-indexing/robots/intro (Accessed: 17 June 2026).
 

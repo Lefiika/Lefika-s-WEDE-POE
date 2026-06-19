@@ -3,44 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop| Premium Tech Solutions</title>
+    <title>Shop Keyboards, CPUs, GPUs, RAM &amp; More | Tech Lover's</title>
+    <meta name="description" content="Browse Tech Lover's range of keyboards, CPUs, GPUs, RAM, motherboards, cases and accessories. Quality new and refurbished computer parts with regional delivery across South Africa.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-            <div class="logo">
-                <h1>Tech Lover's</h1>
-                <a href="index.html">
+        <div class="logo">
+            <h1>Tech Lover's</h1>
+            <a href="index.html">
                 <img src="https://tse3.mm.bing.net/th/id/OIP.z9FZgQN2LalIPuGhvksKIAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Tech Lover's Logo">
-                </a>
-            </div>     
-            <nav>      
-                <a href="index.html">Home</a> |
-                <strong>Shop</strong> |
-                <a href="custom.html">Custom Build</a> |
-                <a href="repair.html">Repair Booking</a> |
-                <a href="about.html">About Us</a> |
-                <a href="contact.html">Contact Us</a> 
-              </nav>
+            </a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a> |
+            <strong>Shop</strong> |
+            <a href="custom.html">Custom Build</a> |
+            <a href="repair.html">Repair Booking</a> |
+            <a href="about.html">About Us</a> |
+            <a href="contact.html">Contact Us</a> |
+            <a href="checkout.html">&#128722; Cart</a>
+        </nav>
     </header>
+
     <main>
         <section>
-            <form>              <!-- where the customer picks the item type they want -->
-                <input type="text" placeholder="Search for CPU's,Keyboards,etc..." size="50">
+            <form id="shop-search-form">
+                <input type="text" id="shop-search-input" placeholder="Search for CPUs, Keyboards, RAM..." size="50">
                 <input type="submit" value="Search">
             </form>
             <p>
-                <strong>Quick Filters:</strong> 
-                <button type="button">All Items</button>
-                <button type="button">Keyboards</button>
-                <button type="button">CPUs</button>
-                <button type="button">GPUs</button>
-                <button type="button">Pre-built PCs</button>
-                <button type="button">Accessories</button>
+                <strong>Quick Filters:</strong>
+                <button type="button" data-filter="All Items">All Items</button>
+                <button type="button" data-filter="Keyboards">Keyboards</button>
+                <button type="button" data-filter="CPUs">CPUs</button>
+                <button type="button" data-filter="GPUs">GPUs</button>
+                <button type="button" data-filter="RAM">RAM</button>
+                <button type="button" data-filter="Motherboards">Motherboards</button>
+                <button type="button" data-filter="Cases">Cases</button>
+                <button type="button" data-filter="Pre-built PCs">Pre-built PCs</button>
+                <button type="button" data-filter="Accessories">Accessories</button>
             </p>
         </section>
 
-        <aside>                         <!-- Google Gemini, 2026. AI assistant consulted for understanding on how to implement different input types. [Software] Available at: https://gemini.google.com (Accessed: 19 April 2026). -->
+        <aside>
             <h3>Filter Inventory</h3>
             <p><strong>Release Date:</strong></p>
             <input type="date">
@@ -55,79 +61,281 @@
             <input type="checkbox"><label>Refurbished</label>
 
             <p><strong>Price Range:</strong></p>
-            <input type="range" min="0" max="100">
-            <p>R0 – R100,000</p>
+            <input type="range" id="price-range" min="0" max="100">
+            <p>R0 – <span id="price-range-value">R100,000</span></p>
 
             <p><strong>Warranty Options:</strong></p>
             <input type="radio" name="warranty"> <label>1 Year Standard</label><br>
             <input type="radio" name="warranty"> <label>3 Year Extended</label>
         </aside>
 
-        <section>            <!-- the item list based on the filters from the customer -->
+        <section id="product-list">
             <h2>Available Tech &amp; Components</h2>
             <p>Explore our curated selection of high-quality components and fully tested pre-built systems. Each item is selected to ensure it meets our standards for being built to last and easily repairable.</p>
 
-            <div>
+            <p id="no-results" hidden>No items match this filter yet. Check back soon — we're always adding new stock.</p>
+
+            <!-- ===== KEYBOARDS ===== -->
+            <div data-category="Keyboards">
                 <figure>
-                  <img src="https://th.bing.com/th/id/R.4fd62bd96e4d06521dc15ff3d8d91cd9?rik=vXZGvn38T3ZBUw&pid=ImgRaw&r=0"
-                        srcset="https://th.bing.com/th/id/R.4fd62bd96e4d06521dc15ff3d8d91cd9?rik=vXZGvn38T3ZBUw&pid=ImgRaw&r=0 800w"
-                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-                  alt="Razer Pro Type Ultra">
-                  <figcaption>Razer Pro Type Ultra – Mechanical Keyboard</figcaption>
+                    <img src="https://th.bing.com/th/id/R.4fd62bd96e4d06521dc15ff3d8d91cd9?rik=vXZGvn38T3ZBUw&pid=ImgRaw&r=0"
+                         srcset="https://th.bing.com/th/id/R.4fd62bd96e4d06521dc15ff3d8d91cd9?rik=vXZGvn38T3ZBUw&pid=ImgRaw&r=0 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Razer Pro Type Ultra">
+                    <figcaption>Razer Pro Type Ultra – Mechanical Keyboard</figcaption>
                 </figure>
                 <h3>Razer Pro Type Ultra</h3>
                 <p>Designed for both students and gamers, these keyboards offer the durability required for long study sessions or intense gaming rigs.</p>
                 <p><strong>Price: <span class="price">R1,200</span></strong></p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-btn" data-item="Razer Pro Type Ultra" data-price="1200">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
             </div>
 
-            <br>
-
-            <div>
+            <div data-category="Keyboards">
                 <figure>
-                  <img src="https://tse3.mm.bing.net/th/id/OIP.1Fg5aUFiuVs0Iim4EPKqOQHaE6?rs=1&pid=ImgDetMain&o=7&rm=3" 
-                        srcset="https://tse3.mm.bing.net/th/id/OIP.1Fg5aUFiuVs0Iim4EPKqOQHaE6?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
-                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw" 
-                        alt="AMD Ryzen 5">
-                  <figcaption><abbr title="Advanced Micro Devices">AMD</abbr> Ryzen 5 – Mid-Range Processor</figcaption>
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.P6o2JVJi7MVBQq3zD8nZ3gHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse1.mm.bing.net/th/id/OIP.P6o2JVJi7MVBQq3zD8nZ3gHaE8?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Logitech MX Keys Advanced Keyboard">
+                    <figcaption>Logitech MX Keys Advanced – Wireless Keyboard</figcaption>
+                </figure>
+                <h3>Logitech MX Keys Advanced</h3>
+                <p>A premium wireless keyboard ideal for professionals and productivity-focused users. Backlit keys, multi-device pairing, and a comfortable low-profile design make long workdays effortless.</p>
+                <p><strong>Price: <span class="price">R2,100</span></strong></p>
+                <button class="add-to-cart-btn" data-item="Logitech MX Keys Advanced" data-price="2100">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== CPUs ===== -->
+            <div data-category="CPUs">
+                <figure>
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.1Fg5aUFiuVs0Iim4EPKqOQHaE6?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse3.mm.bing.net/th/id/OIP.1Fg5aUFiuVs0Iim4EPKqOQHaE6?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="AMD Ryzen 5">
+                    <figcaption><abbr title="Advanced Micro Devices">AMD</abbr> Ryzen 5 – Mid-Range Processor</figcaption>
                 </figure>
                 <h3>AMD Ryzen 5</h3>
-                <p>The heart of any custom build. We stock powerful multi-core processors that enable small businesses to run office networks smoothly or enthusiasts to build high-end gaming machines.</p>
+                <p>The heart of any custom build. Multi-core performance that lets small businesses run office networks smoothly or enthusiasts build powerful gaming machines at an accessible price.</p>
                 <p><strong>Price: <span class="price">R6,500</span></strong></p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-btn" data-item="AMD Ryzen 5" data-price="6500">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
             </div>
 
-            <br>
-
-            <div>
+            <div data-category="CPUs">
                 <figure>
-                  <img src="https://tse4.mm.bing.net/th/id/OIP.gMzpJ2bB-SyJ_MX3yQCU1AHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" 
-                           srcset="https://tse4.mm.bing.net/th/id/OIP.gMzpJ2bB-SyJ_MX3yQCU1AHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
-                           sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw" 
-                           alt="GeForce RTX 4070 Ti">
-                  <figcaption><abbr title="Graphics Processing Unit">GPU</abbr> – GeForce RTX 4070 Ti</figcaption>
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.RXLKPKy6PjCzNMxjP2BnWgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse4.mm.bing.net/th/id/OIP.RXLKPKy6PjCzNMxjP2BnWgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Intel Core i7 Processor">
+                    <figcaption>Intel Core i7-13700K – High-Performance <abbr title="Central Processing Unit">CPU</abbr></figcaption>
+                </figure>
+                <h3>Intel Core i7-13700K</h3>
+                <p>A powerhouse 16-core processor for content creators, game streamers, and power users who need both raw speed and multitasking efficiency. Compatible with LGA1700 motherboards.</p>
+                <p><strong>Price: <span class="price">R9,800</span></strong></p>
+                <button class="add-to-cart-btn" data-item="Intel Core i7-13700K" data-price="9800">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== GPUs ===== -->
+            <div data-category="GPUs">
+                <figure>
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.gMzpJ2bB-SyJ_MX3yQCU1AHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse4.mm.bing.net/th/id/OIP.gMzpJ2bB-SyJ_MX3yQCU1AHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="GeForce RTX 4070 Ti">
+                    <figcaption><abbr title="Graphics Processing Unit">GPU</abbr> – GeForce RTX 4070 Ti</figcaption>
                 </figure>
                 <h3>GeForce RTX 4070 Ti</h3>
-                <p>Essential for high-end users seeking bespoke gaming rigs. Our GPUs are sourced to provide the best performance-to-price ratio in the current market.</p>
+                <p>Essential for high-end gaming and creative workloads. Our GPUs are sourced to provide the best performance-to-price ratio available, with DLSS 3 support for silky-smooth framerates.</p>
                 <p><strong>Price: <span class="price">R14,000</span></strong></p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-btn" data-item="GeForce RTX 4070 Ti" data-price="14000">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
             </div>
 
-            <br>
-
-            <!-- New product listing added for content score -->
-            <div>
+            <div data-category="GPUs">
                 <figure>
-                  <img src="https://th.bing.com/th/id/OIP.XMZVSNcmBiKUOQgkBWA8mQHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" 
-                            srcset="https://th.bing.com/th/id/OIP.XMZVSNcmBiKUOQgkBWA8mQHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3 800w"
-                            sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw" 
-                            alt="Corsair Vengeance DDR5 RAM">
-                  <figcaption>Corsair Vengeance <abbr title="Double Data Rate 5">DDR5</abbr> – High-Speed Memory Kit</figcaption>
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.3kAQf5RaHWRJE8z2yDSGFgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse2.mm.bing.net/th/id/OIP.3kAQf5RaHWRJE8z2yDSGFgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="AMD Radeon RX 7800 XT">
+                    <figcaption>AMD Radeon RX 7800 XT – Mid-Range <abbr title="Graphics Processing Unit">GPU</abbr></figcaption>
+                </figure>
+                <h3>AMD Radeon RX 7800 XT</h3>
+                <p>Excellent 1440p performance at a more accessible price point. A great choice for gamers who want high quality visuals without spending on a flagship card. Includes 16GB GDDR6 memory.</p>
+                <p><strong>Price: <span class="price">R9,500</span></strong></p>
+                <button class="add-to-cart-btn" data-item="AMD Radeon RX 7800 XT" data-price="9500">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== RAM ===== -->
+            <div data-category="RAM">
+                <figure>
+                    <img src="https://th.bing.com/th/id/OIP.XMZVSNcmBiKUOQgkBWA8mQHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://th.bing.com/th/id/OIP.XMZVSNcmBiKUOQgkBWA8mQHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Corsair Vengeance DDR5 RAM">
+                    <figcaption>Corsair Vengeance <abbr title="Double Data Rate 5">DDR5</abbr> – High-Speed Memory Kit</figcaption>
                 </figure>
                 <h3>Corsair Vengeance DDR5 RAM <mark>Best Seller</mark></h3>
-                <p>Upgrade your system's performance with our most popular <abbr title="Random Access Memory">RAM</abbr> kit. The Corsair Vengeance DDR5 delivers blazing-fast speeds, ideal for content creators, gamers, and anyone running memory-intensive applications. Compatible with all modern motherboards.</p>
+                <p>Upgrade your system's performance with our most popular <abbr title="Random Access Memory">RAM</abbr> kit. Blazing-fast speeds ideal for content creators, gamers, and memory-intensive workloads. Compatible with all modern motherboards.</p>
                 <p><strong>Price: <span class="price">R3,200</span></strong></p>
-                <button>Add to Cart</button>
+                <button class="add-to-cart-btn" data-item="Corsair Vengeance DDR5 RAM" data-price="3200">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <div data-category="RAM">
+                <figure>
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.XAFf4b0Cs5piGFqE7A-o0gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse4.mm.bing.net/th/id/OIP.XAFf4b0Cs5piGFqE7A-o0gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="G.Skill Trident Z5 RGB RAM">
+                    <figcaption>G.Skill Trident Z5 RGB – <abbr title="Double Data Rate 5">DDR5</abbr> Gaming Memory</figcaption>
+                </figure>
+                <h3>G.Skill Trident Z5 RGB DDR5</h3>
+                <p>High-performance DDR5 memory with striking RGB lighting built for enthusiast gaming rigs and high-end workstations. Available in 32GB dual-channel kits running at 6000MHz for exceptional throughput.</p>
+                <p><strong>Price: <span class="price">R4,800</span></strong></p>
+                <button class="add-to-cart-btn" data-item="G.Skill Trident Z5 RGB DDR5" data-price="4800">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <div data-category="RAM">
+                <figure>
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.z5JgDCQ0W8h5NV-w0bXGRgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse3.mm.bing.net/th/id/OIP.z5JgDCQ0W8h5NV-w0bXGRgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Kingston FURY Beast DDR4 RAM">
+                    <figcaption>Kingston FURY Beast – <abbr title="Double Data Rate 4">DDR4</abbr> Value Memory</figcaption>
+                </figure>
+                <h3>Kingston FURY Beast DDR4</h3>
+                <p>Reliable DDR4 memory for budget builds and office systems. A solid upgrade for older platforms, offering 16GB at 3200MHz with low-profile heat spreaders that fit virtually any case.</p>
+                <p><strong>Price: <span class="price">R1,600</span></strong></p>
+                <button class="add-to-cart-btn" data-item="Kingston FURY Beast DDR4" data-price="1600">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== MOTHERBOARDS ===== -->
+            <div data-category="Motherboards">
+                <figure>
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.GXJJi5VXnVCFgHa8U5XhYgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse3.mm.bing.net/th/id/OIP.GXJJi5VXnVCFgHa8U5XhYgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="ASUS ROG Strix B650 Motherboard">
+                    <figcaption>ASUS ROG Strix B650-E – AM5 Motherboard</figcaption>
+                </figure>
+                <h3>ASUS ROG Strix B650-E Gaming</h3>
+                <p>An AM5 platform motherboard built for AMD Ryzen 7000-series processors. Features PCIe 5.0, <abbr title="Double Data Rate 5">DDR5</abbr> support, Wi-Fi 6E, and a robust VRM for stable overclocking. Ideal for enthusiast and gaming builds.</p>
+                <p><strong>Price: <span class="price">R5,400</span></strong></p>
+                <button class="add-to-cart-btn" data-item="ASUS ROG Strix B650-E Gaming" data-price="5400">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <div data-category="Motherboards">
+                <figure>
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.yk8Uh5-Mdb3d8S52z29RDQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse1.mm.bing.net/th/id/OIP.yk8Uh5-Mdb3d8S52z29RDQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="MSI PRO B760M-A Motherboard">
+                    <figcaption>MSI PRO B760M-A – Micro-ATX Office Motherboard</figcaption>
+                </figure>
+                <h3>MSI PRO B760M-A DDR4</h3>
+                <p>A dependable micro-ATX motherboard for Intel 12th and 13th Gen processors. An excellent choice for small business office builds where reliability and compatibility matter more than extreme overclocking headroom.</p>
+                <p><strong>Price: <span class="price">R2,800</span></strong></p>
+                <button class="add-to-cart-btn" data-item="MSI PRO B760M-A DDR4" data-price="2800">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== CASES ===== -->
+            <div data-category="Cases">
+                <figure>
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.bMujNMhj7V31MCvBNuQLegHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse1.mm.bing.net/th/id/OIP.bMujNMhj7V31MCvBNuQLegHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Fractal Design Meshify C PC Case">
+                    <figcaption>Fractal Design Meshify C – Mid-Tower Case</figcaption>
+                </figure>
+                <h3>Fractal Design Meshify C</h3>
+                <p>A compact mid-tower case with exceptional airflow thanks to its angular mesh front panel. Supports ATX motherboards, up to 360mm radiators for liquid cooling, and keeps cable management clean and tidy.</p>
+                <p><strong>Price: <span class="price">R1,950</span></strong></p>
+                <button class="add-to-cart-btn" data-item="Fractal Design Meshify C" data-price="1950">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <div data-category="Cases">
+                <figure>
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.lGrNV3daCyqxZqYX2j0RCgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse4.mm.bing.net/th/id/OIP.lGrNV3daCyqxZqYX2j0RCgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="NZXT H510 Flow PC Case">
+                    <figcaption>NZXT H510 Flow – Sleek Mid-Tower with Mesh Panel</figcaption>
+                </figure>
+                <h3>NZXT H510 Flow</h3>
+                <p>Clean, minimalist aesthetics combined with improved airflow over the original H510. A tempered glass side panel shows off your build. Perfect for customers who want both looks and cooling performance without spending a fortune.</p>
+                <p><strong>Price: <span class="price">R2,200</span></strong></p>
+                <button class="add-to-cart-btn" data-item="NZXT H510 Flow" data-price="2200">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== PRE-BUILT PCs ===== -->
+            <div data-category="Pre-built PCs">
+                <figure>
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.FA8ARfGl1vgl_NJZZLw7TgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse4.mm.bing.net/th/id/OIP.FA8ARfGl1vgl_NJZZLw7TgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="The Simple Build Desktop PC">
+                    <figcaption>The Simple Build – Entry-Level Desktop</figcaption>
+                </figure>
+                <h3>The Simple Build</h3>
+                <p>An entry-level computer for students and home office users. Equipped with reliable <abbr title="Hard Disk Drive">HDD</abbr> storage and ample <abbr title="Random Access Memory">RAM</abbr> to handle multitasking with ease. The perfect balance of affordability and everyday performance.</p>
+                <p><strong>Price: <span class="price">R12,000</span></strong></p>
+                <button class="add-to-cart-btn" data-item="The Simple Build" data-price="12000">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <div data-category="Pre-built PCs">
+                <figure>
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.A00W0K3yx4Y2K0FOmlF9xQHaHa?w=800&h=800&rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse2.mm.bing.net/th/id/OIP.A00W0K3yx4Y2K0FOmlF9xQHaHa?w=800&h=800&rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="The TechnoTitan Gaming Rig">
+                    <figcaption>The TechnoTitan – Ultimate Gaming Rig</figcaption>
+                </figure>
+                <h3>The TechnoTitan <mark>Staff Pick</mark></h3>
+                <p>Our flagship pre-made build. Featuring the latest generation <abbr title="Graphics Processing Unit">GPU</abbr> and liquid cooling, this machine runs the most demanding modern titles at 4K resolution. Don't just play the game — dominate it.</p>
+                <p><strong>Price: <span class="price">R35,000</span></strong></p>
+                <button class="add-to-cart-btn" data-item="The TechnoTitan" data-price="35000">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <!-- ===== ACCESSORIES ===== -->
+            <div data-category="Accessories">
+                <figure>
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.SkRY-bW-oA_BBUUUwf0V5gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse3.mm.bing.net/th/id/OIP.SkRY-bW-oA_BBUUUwf0V5gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Samsung 970 EVO SSD">
+                    <figcaption>Samsung 970 EVO Plus – NVMe <abbr title="Solid State Drive">SSD</abbr></figcaption>
+                </figure>
+                <h3>Samsung 970 EVO Plus 1TB NVMe SSD</h3>
+                <p>Lightning-fast NVMe storage that dramatically reduces boot times and application load speeds. At 3,500 MB/s sequential read, this <abbr title="Solid State Drive">SSD</abbr> is one of the best value-per-rand upgrades any system can receive.</p>
+                <p><strong>Price: <span class="price">R2,400</span></strong></p>
+                <button class="add-to-cart-btn" data-item="Samsung 970 EVO Plus 1TB NVMe SSD" data-price="2400">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
+            </div>
+
+            <div data-category="Accessories">
+                <figure>
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.lNJkC02ySAXl1R7UuatP7wHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+                         srcset="https://tse2.mm.bing.net/th/id/OIP.lNJkC02ySAXl1R7UuatP7wHaE8?rs=1&pid=ImgDetMain&o=7&rm=3 800w"
+                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                         alt="Corsair RM850x Power Supply">
+                    <figcaption>Corsair RM850x – 850W Gold-Rated <abbr title="Power Supply Unit">PSU</abbr></figcaption>
+                </figure>
+                <h3>Corsair RM850x 850W PSU</h3>
+                <p>An 80 Plus Gold certified power supply unit with fully modular cabling for cleaner builds. Provides reliable, quiet power delivery with zero-RPM fan mode at low loads — protecting your components for years to come.</p>
+                <p><strong>Price: <span class="price">R3,100</span></strong></p>
+                <button class="add-to-cart-btn" data-item="Corsair RM850x 850W PSU" data-price="3100">Add to Cart</button>
+                <span class="cart-status" role="status"></span>
             </div>
         </section>
 
@@ -139,13 +347,14 @@
                 At Tech Lover's, we understand that buying computer parts can be overwhelming. Since our start in a small garage in <time datetime="2018">2018</time>, we have prioritized honest advice over quick sales. Whether you are looking for affordable laptops or powerful <abbr title="Graphics Processing Units">GPUs</abbr>, our retail list is curated by our founders, Lefika and John, who have years of hands-on repair experience.
             </p>
             <p>
-                We believe in sustainable technology. This means we don't just sell you a part; we sell you a component that is built to last. If you are unsure which part is right for your specific office network or gaming setup, you can always visit our <strong>Contact Page</strong> to message us on WhatsApp for a direct consultation. Our goal is to ensure every student, gamer, and business owner across the country has access to professional-grade <abbr title="Information Technology">IT</abbr> support and high-quality hardware.
+                We believe in sustainable technology. This means we don't just sell you a part — we sell you a component that is built to last. If you are unsure which part is right for your specific setup, visit our <strong>Contact Page</strong> to message us directly for a free consultation. Our goal is to ensure every student, gamer, and business owner across the country has access to professional-grade <abbr title="Information Technology">IT</abbr> support and high-quality hardware.
             </p>
         </section>
-    </main>     
-       
+    </main>
+
     <footer>
         <p>&copy;<time datetime="2026">2026</time> Tech Lover's | Pretoria , South Africa</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
