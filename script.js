@@ -416,4 +416,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+/* ---------------------------------------------------------------
+  7. CUSTOM BUILD LIVE IMAGE & DETAIL PREVIEW
+--------------------------------------------------------------- */
+// Global state variables for tracking the selected part's data
+var activePreviewImage = "";
+var activePreviewName = "";
+var activeComponentPrice = 0;
+
+// Target the preview DOM elements
+var previewImgElement = document.getElementById("component-preview-img");
+var previewNameElement = document.getElementById("preview-name");
+var buildTotalElement = document.getElementById("build-total");
+
+// Target all component radio buttons
+var buildPartRadios = document.querySelectorAll(".build-part");
+
+if (buildPartRadios.length > 0) {
+    buildPartRadios.forEach(function (radio) {
+        radio.addEventListener("change", function () {
+            
+            // 1. Grab data attributes from the clicked element into global variables
+            activePreviewImage = radio.getAttribute("data-img");
+            activePreviewName = radio.getAttribute("data-name");
+            activeComponentPrice = parseInt(radio.getAttribute("data-price") || "0", 10);
+
+            // 2. Update the Image Preview Source and Alt Text
+            if (previewImgElement && activePreviewImage) {
+                previewImgElement.src = activePreviewImage;
+                previewImgElement.alt = "Preview of " + activePreviewName;
+            }
+
+            // 3. Update the text below the image to show what is selected
+            if (previewNameElement && activePreviewName) {
+                previewNameElement.textContent = activePreviewName;
+            }
+
+            /* -------------------------------------------------------
+               OPTIONAL: Calculate total price of ALL checked elements
+               ------------------------------------------------------- */
+            var totalBuildAccumulator = 0;
+            var allCheckedParts = document.querySelectorAll(".build-part:checked");
+
+            allCheckedParts.forEach(function (checkedRadio) {
+                totalBuildAccumulator += parseInt(checkedRadio.getAttribute("data-price") || "0", 10);
+            });
+
+            // Update the live running total on the page
+            if (buildTotalElement) {
+                buildTotalElement.textContent = "R" + totalBuildAccumulator.toLocaleString("en-ZA");
+            }
+        });
+    });
+}
 });
