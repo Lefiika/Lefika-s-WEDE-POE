@@ -10,38 +10,52 @@
 
 /* -------------------------------------------------------------------
    SHARED CART STATE
-   A simple in-memory cart stored on the window object so it persists
-   across script.js functions within a single browsing session.
+   Persisted in localStorage so items survive page navigation.
    Items are objects: { name: string, price: number }
 ------------------------------------------------------------------- */
-window.cart = window.cart || [];
+function loadCart() {
+  try {
+    var stored = localStorage.getItem("techlovers_cart");
+    return stored ? JSON.parse(stored) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  try {
+    localStorage.setItem("techlovers_cart", JSON.stringify(cart));
+  } catch (e) { /* storage unavailable */ }
+}
+
+window.cart = loadCart();
 
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------------------------------------------------------------
      1. CONTACT FORM VALIDATION (contact.html)
   --------------------------------------------------------------- */
-  const contactForm = document.getElementById("contact-form");
+  var contactForm = document.getElementById("contact-form");
 
   if (contactForm) {
-    const statusBox = document.getElementById("form-status");
+    var statusBox = document.getElementById("form-status");
 
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const name    = document.getElementById("contact-name");
-      const email   = document.getElementById("contact-email");
-      const phone   = document.getElementById("contact-phone");
-      const type    = document.getElementById("message-type");
-      const message = document.getElementById("contact-message");
+      var name    = document.getElementById("contact-name");
+      var email   = document.getElementById("contact-email");
+      var phone   = document.getElementById("contact-phone");
+      var type    = document.getElementById("message-type");
+      var message = document.getElementById("contact-message");
 
-      const errors = [];
+      var errors = [];
 
       if (!name.value.trim() || name.value.trim().length < 2) {
         errors.push("Please enter your full name (at least 2 characters).");
       }
 
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email.value.trim())) {
         errors.push("Please enter a valid email address.");
       }
@@ -74,21 +88,21 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---------------------------------------------------------------
      2. REPAIR BOOKING FORM VALIDATION (repair.html)
   --------------------------------------------------------------- */
-  const repairForm = document.getElementById("repair-form");
+  var repairForm = document.getElementById("repair-form");
 
   if (repairForm) {
-    const repairStatus = document.getElementById("repair-form-status");
-    const dateInput    = document.getElementById("repair-date");
+    var repairStatus = document.getElementById("repair-form-status");
+    var dateInput    = document.getElementById("repair-date");
 
-    const today = new Date().toISOString().split("T")[0];
+    var today = new Date().toISOString().split("T")[0];
     dateInput.setAttribute("min", today);
 
     repairForm.addEventListener("submit", function (e) {
-      const serviceChosen = repairForm.querySelector('input[name="repair_service"]:checked');
-      const problem       = document.getElementById("problem-details");
-      const time          = document.getElementById("repair-time");
+      var serviceChosen = repairForm.querySelector('input[name="repair_service"]:checked');
+      var problem       = document.getElementById("problem-details");
+      var time          = document.getElementById("repair-time");
 
-      const errors = [];
+      var errors = [];
 
       if (!serviceChosen) {
         errors.push("Please select a repair service.");
@@ -119,16 +133,16 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---------------------------------------------------------------
      3. SHOP QUICK FILTERS + SEARCH (shop.html)
   --------------------------------------------------------------- */
-  const filterButtons = document.querySelectorAll("[data-filter]");
+  var filterButtons = document.querySelectorAll("[data-filter]");
 
   if (filterButtons.length > 0) {
-    const productCards = document.querySelectorAll("#product-list > div[data-category]");
-    const noResults    = document.getElementById("no-results");
+    var productCards = document.querySelectorAll("#product-list > div[data-category]");
+    var noResults    = document.getElementById("no-results");
 
     function applyVisibility(matchFn) {
-      let visibleCount = 0;
+      var visibleCount = 0;
       productCards.forEach(function (card) {
-        const show = matchFn(card);
+        var show = matchFn(card);
         card.hidden = !show;
         if (show) visibleCount++;
       });
@@ -137,27 +151,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     filterButtons.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        // Highlight the active filter button
         filterButtons.forEach(function (b) { b.classList.remove("filter-active"); });
         btn.classList.add("filter-active");
 
-        const chosen = btn.getAttribute("data-filter");
+        var chosen = btn.getAttribute("data-filter");
         applyVisibility(function (card) {
           return chosen === "All Items" || card.getAttribute("data-category") === chosen;
         });
       });
     });
 
-    // Search bar
-    const shopSearchForm  = document.getElementById("shop-search-form");
-    const shopSearchInput = document.getElementById("shop-search-input");
+    var shopSearchForm  = document.getElementById("shop-search-form");
+    var shopSearchInput = document.getElementById("shop-search-input");
 
     if (shopSearchForm && shopSearchInput) {
       shopSearchForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        const term = shopSearchInput.value.trim().toLowerCase();
+        var term = shopSearchInput.value.trim().toLowerCase();
 
-        // Clear active filter highlight on search
         filterButtons.forEach(function (b) { b.classList.remove("filter-active"); });
 
         if (term === "") {
@@ -172,33 +183,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Price range slider
-  const priceRange      = document.getElementById("price-range");
-  const priceRangeValue = document.getElementById("price-range-value");
+  /* Price range slider */
+  var priceRange      = document.getElementById("price-range");
+  var priceRangeValue = document.getElementById("price-range-value");
 
   if (priceRange && priceRangeValue) {
     priceRange.addEventListener("input", function () {
-      const amount = Number(priceRange.value) * 1000;
+      var amount = Number(priceRange.value) * 1000;
       priceRangeValue.textContent = "R" + amount.toLocaleString("en-ZA");
     });
   }
 
   /* ---------------------------------------------------------------
-     ADD TO CART BUTTONS (shop.html + custom.html)
-     Stores item in window.cart and shows confirmation.
+     ADD TO CART BUTTONS (shop.html)
+     Saves item to localStorage cart and shows confirmation.
   --------------------------------------------------------------- */
-  const cartButtons = document.querySelectorAll(".add-to-cart-btn");
+  var cartButtons = document.querySelectorAll(".add-to-cart-btn");
 
   cartButtons.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      const itemName  = btn.getAttribute("data-item") || btn.closest("[data-category]") && btn.closest("[data-category]").querySelector("h3").textContent.trim() || "Item";
-      const itemPrice = parseInt(btn.getAttribute("data-price") || "0", 10);
+      var itemName  = btn.getAttribute("data-item") || "Item";
+      var itemPrice = parseInt(btn.getAttribute("data-price") || "0", 10);
 
-      // Add to shared cart array
-      window.cart.push({ name: itemName, price: itemPrice });
+      /* Reload cart fresh from storage, push new item, save back */
+      var currentCart = loadCart();
+      currentCart.push({ name: itemName, price: itemPrice });
+      saveCart(currentCart);
+      window.cart = currentCart;
 
-      // Show confirmation text next to button
-      const statusSpan = btn.parentElement.querySelector(".cart-status");
+      var statusSpan = btn.parentElement.querySelector(".cart-status");
       if (statusSpan) {
         statusSpan.style.color = "green";
         statusSpan.textContent = "Added to cart!";
@@ -209,50 +222,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------------------------------------------------------------
      4. CUSTOM BUILD LIVE PREVIEW (custom.html)
+     - Updates component image preview when a radio is selected
+     - Updates the running total and part name list
   --------------------------------------------------------------- */
-  const buildParts = document.querySelectorAll(".build-part");
+  var buildParts = document.querySelectorAll(".build-part");
 
   if (buildParts.length > 0) {
-    const previewName  = document.getElementById("preview-name");
-    const buildTotal   = document.getElementById("build-total");
-    const buildStatus  = document.getElementById("build-status");
-    const addBuildBtn  = document.getElementById("add-build-btn");
+    var previewImg  = document.getElementById("component-preview-img");
+    var previewName = document.getElementById("preview-name");
+    var buildTotal  = document.getElementById("build-total");
+    var buildStatus = document.getElementById("build-status");
+    var addBuildBtn = document.getElementById("add-build-btn");
 
-    function recalcBuild() {
-      const chosenParts = document.querySelectorAll(".build-part:checked");
-      let total = 0;
-      const names = [];
+    function recalcBuild(changedRadio) {
+      /* Update image preview from the radio that just changed */
+      if (previewImg && changedRadio) {
+        var imgSrc = changedRadio.getAttribute("data-img");
+        if (imgSrc) {
+          previewImg.src = imgSrc;
+          previewImg.removeAttribute("srcset");
+          previewImg.alt = "Preview of " + (changedRadio.getAttribute("data-name") || "component");
+        }
+      }
+
+      /* Recalculate total and name list from ALL currently checked radios */
+      var chosenParts = document.querySelectorAll(".build-part:checked");
+      var total = 0;
+      var names = [];
 
       chosenParts.forEach(function (part) {
-        total += Number(part.getAttribute("data-price"));
-        names.push(part.getAttribute("data-name"));
+        total += Number(part.getAttribute("data-price") || 0);
+        names.push(part.getAttribute("data-name") || "");
       });
 
-      previewName.textContent = names.length > 0 ? names.join(", ") : "......";
-      buildTotal.textContent  = "R" + total.toLocaleString("en-ZA");
+      if (previewName) {
+        previewName.textContent = names.length > 0 ? names.join(", ") : "......";
+      }
+      if (buildTotal) {
+        buildTotal.textContent = "R" + total.toLocaleString("en-ZA");
+      }
     }
 
     buildParts.forEach(function (part) {
-      part.addEventListener("change", recalcBuild);
+      part.addEventListener("change", function () {
+        recalcBuild(part);
+      });
     });
 
+    /* Add full custom build to cart */
     if (addBuildBtn) {
       addBuildBtn.addEventListener("click", function () {
-        const chosenParts = document.querySelectorAll(".build-part:checked");
+        var chosenParts = document.querySelectorAll(".build-part:checked");
         if (chosenParts.length === 0) {
-          buildStatus.style.color = "#b00020";
-          buildStatus.textContent = "Please select at least one component before adding your build to the cart.";
+          if (buildStatus) {
+            buildStatus.style.color = "#b00020";
+            buildStatus.textContent = "Please select at least one component before adding your build to the cart.";
+          }
           return;
         }
-        // Add each chosen part to the cart
+
+        var currentCart = loadCart();
         chosenParts.forEach(function (part) {
-          window.cart.push({
-            name:  part.getAttribute("data-name"),
-            price: Number(part.getAttribute("data-price"))
+          currentCart.push({
+            name:  part.getAttribute("data-name") || "Custom Part",
+            price: Number(part.getAttribute("data-price") || 0)
           });
         });
-        buildStatus.style.color  = "green";
-        buildStatus.textContent  = "Your custom build has been added to the cart!";
+        saveCart(currentCart);
+        window.cart = currentCart;
+
+        if (buildStatus) {
+          buildStatus.style.color  = "green";
+          buildStatus.textContent  = "Your custom build has been added to the cart!";
+        }
       });
     }
   }
@@ -260,21 +302,21 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---------------------------------------------------------------
      5. CUSTOM BUILD COMPONENT SEARCH (custom.html)
   --------------------------------------------------------------- */
-  const searchBoxes = document.querySelectorAll("[data-list]");
+  var searchBoxes = document.querySelectorAll("[data-list]");
 
   searchBoxes.forEach(function (box) {
-    const list = document.getElementById(box.getAttribute("data-list"));
+    var list = document.getElementById(box.getAttribute("data-list"));
     if (!list) return;
 
-    const unavailableMsg = list.parentElement.querySelector(".unavailable-msg");
-    const items          = list.querySelectorAll("li");
+    var unavailableMsg = list.parentElement.querySelector(".unavailable-msg");
+    var items          = list.querySelectorAll("li");
 
     box.addEventListener("input", function () {
-      const term = box.value.trim().toLowerCase();
-      let visibleCount = 0;
+      var term = box.value.trim().toLowerCase();
+      var visibleCount = 0;
 
       items.forEach(function (item) {
-        const matches = item.textContent.toLowerCase().includes(term);
+        var matches = item.textContent.toLowerCase().includes(term);
         item.hidden = !matches;
         if (matches) visibleCount++;
       });
@@ -298,39 +340,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------------------------------------------------------------
      6. CHECKOUT PAGE (checkout.html)
-     - Reads window.cart (populated by Add to Cart buttons)
-     - Falls back to demo items already in the HTML if cart is empty
-     - Renders remove buttons that work
-     - Updates the order summary table and grand total live
+     - Reads cart from localStorage (survives page navigation)
+     - Clears hardcoded demo items and renders real cart contents
+     - Remove buttons update the summary table and grand total live
      - Shows empty-cart state when all items are removed
   --------------------------------------------------------------- */
-  const emptyState        = document.getElementById("empty-cart-state");
-  const cartItemsState    = document.getElementById("cart-items-state");
-  const cartItemList      = document.getElementById("cart-item-list");
-  const summaryTableBody  = document.getElementById("summary-table-body");
-  const grandTotalEl      = document.getElementById("cart-grand-total");
-  const orderSummaryAside = document.getElementById("order-summary-aside");
+  var emptyState        = document.getElementById("empty-cart-state");
+  var cartItemsState    = document.getElementById("cart-items-state");
+  var cartItemList      = document.getElementById("cart-item-list");
+  var summaryTableBody  = document.getElementById("summary-table-body");
+  var grandTotalEl      = document.getElementById("cart-grand-total");
+  var orderSummaryAside = document.getElementById("order-summary-aside");
 
   if (emptyState && cartItemsState && cartItemList) {
 
-    /* ---------- helpers ---------- */
     function formatPrice(p) {
       return "R" + Number(p).toLocaleString("en-ZA");
     }
 
     function rebuildSummary() {
-      const articles = cartItemList.querySelectorAll("article[data-cart-item]");
+      var articles = cartItemList.querySelectorAll("article[data-cart-item]");
 
       if (summaryTableBody) {
         summaryTableBody.innerHTML = "";
-        let total = 0;
+        var total = 0;
 
         articles.forEach(function (article) {
-          const name  = article.getAttribute("data-cart-item");
-          const price = parseInt(article.getAttribute("data-cart-price") || "0", 10);
+          var name  = article.getAttribute("data-cart-item");
+          var price = parseInt(article.getAttribute("data-cart-price") || "0", 10);
           total += price;
 
-          const tr = document.createElement("tr");
+          var tr = document.createElement("tr");
           tr.innerHTML =
             "<td>" + name + "</td>" +
             "<td><span class='price'>" + (price > 0 ? formatPrice(price) : "TBC") + "</span></td>";
@@ -342,7 +382,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Toggle empty / filled state
       if (articles.length === 0) {
         emptyState.hidden     = false;
         cartItemsState.hidden = true;
@@ -354,31 +393,44 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    /* ---------- wire up remove buttons (including any already in the HTML) ---------- */
+    function syncCartStorage() {
+      /* Keep localStorage in sync after a removal */
+      var articles = cartItemList.querySelectorAll("article[data-cart-item]");
+      var updatedCart = [];
+      articles.forEach(function (article) {
+        updatedCart.push({
+          name:  article.getAttribute("data-cart-item"),
+          price: parseInt(article.getAttribute("data-cart-price") || "0", 10)
+        });
+      });
+      saveCart(updatedCart);
+      window.cart = updatedCart;
+    }
+
     function attachRemoveListeners() {
       cartItemList.querySelectorAll(".remove-item-btn").forEach(function (btn) {
-        // remove any old listener before adding new one (avoid duplicates)
         btn.replaceWith(btn.cloneNode(true));
       });
 
       cartItemList.querySelectorAll(".remove-item-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
-          const article = btn.closest("article");
+          var article = btn.closest("article");
           if (article) {
             article.remove();
+            syncCartStorage();
             rebuildSummary();
           }
         });
       });
     }
 
-    /* ---------- if items were added via window.cart on another page, render them ---------- */
-    if (window.cart && window.cart.length > 0) {
-      // Clear the demo HTML items and replace with cart contents
-      cartItemList.innerHTML = "";
+    cartItemList.innerHTML = "";
 
-      window.cart.forEach(function (item) {
-        const article = document.createElement("article");
+    var savedCart = loadCart();
+
+    if (savedCart.length > 0) {
+      savedCart.forEach(function (item) {
+        var article = document.createElement("article");
         article.setAttribute("data-cart-item", item.name);
         article.setAttribute("data-cart-price", item.price);
         article.innerHTML =
@@ -391,82 +443,31 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Attach remove listeners and build summary for whatever is currently in the list
     attachRemoveListeners();
     rebuildSummary();
   }
 
-  /* ---------- Pay button (checkout.html) ---------- */
-  const payBtn = document.getElementById("pay-btn");
+  /* Pay button (checkout.html) */
+  var payBtn = document.getElementById("pay-btn");
 
   if (payBtn) {
     payBtn.addEventListener("click", function () {
-      const articles = cartItemList ? cartItemList.querySelectorAll("article[data-cart-item]") : [];
+      var articles = cartItemList ? cartItemList.querySelectorAll("article[data-cart-item]") : [];
+      var payStatus = document.getElementById("pay-status");
+
       if (articles.length === 0) {
-        const payStatus = document.getElementById("pay-status");
-        payStatus.style.color   = "#b00020";
-        payStatus.textContent   = "Your cart is empty. Please add items before paying.";
+        payStatus.style.color = "#b00020";
+        payStatus.textContent = "Your cart is empty. Please add items before paying.";
         return;
       }
-      const payStatus = document.getElementById("pay-status");
+
       payStatus.style.color = "green";
       payStatus.textContent = "Payment successful! Thank you for shopping with Tech Lover's. Your order is confirmed.";
-      // Clear the cart after successful payment
+
+      /* Clear cart from storage after payment */
+      saveCart([]);
       window.cart = [];
     });
   }
 
-/* ---------------------------------------------------------------
-  7. CUSTOM BUILD LIVE IMAGE & DETAIL PREVIEW
---------------------------------------------------------------- */
-// Global state variables for tracking the selected part's data
-var activePreviewImage = "";
-var activePreviewName = "";
-var activeComponentPrice = 0;
-
-// Target the preview DOM elements
-var previewImgElement = document.getElementById("component-preview-img");
-var previewNameElement = document.getElementById("preview-name");
-var buildTotalElement = document.getElementById("build-total");
-
-// Target all component radio buttons
-var buildPartRadios = document.querySelectorAll(".build-part");
-
-if (buildPartRadios.length > 0) {
-    buildPartRadios.forEach(function (radio) {
-        radio.addEventListener("change", function () {
-            
-            // 1. Grab data attributes from the clicked element into global variables
-            activePreviewImage = radio.getAttribute("data-img");
-            activePreviewName = radio.getAttribute("data-name");
-            activeComponentPrice = parseInt(radio.getAttribute("data-price") || "0", 10);
-
-            // 2. Update the Image Preview Source and Alt Text
-            if (previewImgElement && activePreviewImage) {
-                previewImgElement.src = activePreviewImage;
-                previewImgElement.alt = "Preview of " + activePreviewName;
-            }
-
-            // 3. Update the text below the image to show what is selected
-            if (previewNameElement && activePreviewName) {
-                previewNameElement.textContent = activePreviewName;
-            }
-
-            /* -------------------------------------------------------
-               OPTIONAL: Calculate total price of ALL checked elements
-               ------------------------------------------------------- */
-            var totalBuildAccumulator = 0;
-            var allCheckedParts = document.querySelectorAll(".build-part:checked");
-
-            allCheckedParts.forEach(function (checkedRadio) {
-                totalBuildAccumulator += parseInt(checkedRadio.getAttribute("data-price") || "0", 10);
-            });
-
-            // Update the live running total on the page
-            if (buildTotalElement) {
-                buildTotalElement.textContent = "R" + totalBuildAccumulator.toLocaleString("en-ZA");
-            }
-        });
-    });
-}
 });
