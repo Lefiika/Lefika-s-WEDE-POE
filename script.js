@@ -126,7 +126,24 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         repairStatus.textContent = errors.join(" ");
         repairStatus.style.color = "#b00020";
-      }
+      } else {
+        // Prevent the default GET submission so we can handle the cart first
+        e.preventDefault();
+        
+        var currentCart = loadCart();
+        
+        // Add the repair booking as an item for R1000
+        currentCart.push({
+            name: "Repair Booking",
+            price: 1000
+        });
+        
+        saveCart(currentCart);
+        window.cart = currentCart;
+        
+        // Redirect the user to the checkout page
+        window.location.href = "checkout.html";
+        }
     });
   }
 
@@ -245,9 +262,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      /* Recalculate total and name list from ALL currently checked radios */
+/* Recalculate total and name list from ALL currently checked radios */
       var chosenParts = document.querySelectorAll(".build-part:checked");
-      var total = 0;
+      // 1. Start the total at R500 to account for the custom build fee
+      var total = 500; 
       var names = [];
 
       chosenParts.forEach(function (part) {
@@ -255,6 +273,9 @@ document.addEventListener("DOMContentLoaded", function () {
         names.push(part.getAttribute("data-name") || "");
       });
 
+      if (chosenParts.length === 0) {
+        total = 0;
+      }
       if (previewName) {
         previewName.textContent = names.length > 0 ? names.join(", ") : "......";
       }
@@ -282,15 +303,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         var currentCart = loadCart();
+        var partsTotal = 0;
+
+        // Calculate the total of all selected parts
         chosenParts.forEach(function (part) {
-          currentCart.push({
-            name:  part.getAttribute("data-name") || "Custom Part",
-            price: Number(part.getAttribute("data-price") || 0)
-          });
+           partsTotal += Number(part.getAttribute("data-price") || 0);
         });
+
+        // Add as a single "Custom build" item with the R500 build fee
+        currentCart.push({
+          name:  "Custom build",
+          price: partsTotal + 500
+        });
+
         saveCart(currentCart);
         window.cart = currentCart;
-
+         
         if (buildStatus) {
           buildStatus.style.color  = "green";
           buildStatus.textContent  = "Your custom build has been added to the cart!";
@@ -298,7 +326,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
-
   /* ---------------------------------------------------------------
      5. CUSTOM BUILD COMPONENT SEARCH (custom.html)
   --------------------------------------------------------------- */
